@@ -1,0 +1,348 @@
+/*
+파일명: kanban-board.css
+설명: kanban-board style
+작성일: 2020-12-27
+작성자: 문지연
+*/
+
+html, body {
+    min-width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+	overflow-x: auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #959A9C;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f5df4d;
+}
+
+/*Project Title*/
+#kanbanPage-wrapper {
+    box-sizing: border-box;
+    padding: 0px 15px;
+    font-family: 'Lato', sans-serif;
+    max-width: 100%;
+    min-height: calc(100vh - 60px);
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+#projectTitleWrap {
+    height: 50px;
+    font-size: 17px;
+    font-weight: bolder;
+}
+
+#projectTitle {
+    height: 100%;
+    line-height: 50px;
+    color: white;
+    float: left;
+}
+
+#projectTitleEdit {
+    height: 100%;
+    float: left;
+    line-height:50px;
+    display: none;
+}
+
+#projectTitleInput {
+    font-family: 'Lato', sans-serif;
+    font-size: 17px;
+    background: transparent;
+    color: #000;
+    border: none;
+    background: #f5df4d;
+    border-radius: 5px;
+    height: 35px;
+    padding-left: 10px;
+    font-weight: bolder;
+}
+
+/*Lists*/
+#listWrap {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.list {
+    background: #DFE3E6;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 275px;
+    padding: 5px 10px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    margin-bottom: 35px;
+}
+
+.listTitleWrap {
+    height: 40px;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.listTitle {
+    height: 100%;
+    line-height: 40px;
+    color: #000;
+    font-weight: 600;
+    width: 80%;
+    margin-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.listTitleEdit {
+    height: 100%;
+    float: left;
+    line-height: 40px;
+    background: #DFE3E6;
+    padding-left: 10px;
+    display: none;
+}
+
+.listTitleInput {
+    font-family: 'Lato', sans-serif;
+    font-size: 17px;
+    background: transparent;
+    color: #000;
+    font-weight: 600;
+    border: none;
+}
+
+.list-placeholder {
+    width: 270px;
+    height: 200px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #737B7F;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+::placeholder {
+    color: #6e7579;
+}
+
+.deleteList {
+    color: #000;
+    height: 100%;
+    line-height: 40px;
+    font-weight: 600;
+    width: 40px;
+    width: 5%;
+    margin-right: 5px;
+    float: right;
+}
+
+.deleteList:hover,
+.show-on-hover {
+    cursor: pointer;
+    color: #8a9297;
+}
+
+/*Cards*/
+.cardWrap {
+    min-height: 10px;
+    max-height: 663px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.cardContent {
+    padding: 7px 10px;
+    background: white;
+    width: 250px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    -webkit-box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+    -moz-box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+    box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+}
+
+.cardAddWrap {
+    /*padding: 7px 5px;*/
+    color: #6e7579;
+    /*margin-bottom: 12px;*/
+    cursor: pointer;
+}
+
+.addCardLabel {
+    padding: 7px 5px;
+    color: #8a9297;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.deleteCard {
+    color: #000;
+    height: 100%;
+    line-height: 25px;
+    font-weight: 600;
+    width: 40px;
+    width: 5%;
+    margin-right: 5px;
+    float: right;
+}
+
+.deleteCard:hover {
+	color: #6e7579;
+    cursor: pointer;
+}
+
+
+.addCard {
+    display: none;
+}
+
+.addCardTitle {
+	box-sizing: content-box;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 7px 10px;
+    width: 225px;
+    font-size: 15px;
+    resize: none;
+    height: 20px;
+    margin-bottom: 7px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+    -moz-box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+    box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+    overflow:hidden;
+    
+    
+}
+
+.addCard-btn {
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 5px;
+    float: left;
+    background-color: #f5df4d;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.addCard-btn:hover{
+    background-color: #f8df8c;
+}
+
+.editCard-btn:hover{
+    background-color: #f8df8c;
+}
+
+/*Add a List*/
+#addListWrap {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.listTitleWrap {
+    height: 40px;
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+#addListLabel {
+    width: 250px;
+    background: #f5df4d;
+    color: #000;
+    font-size: 15px;
+    padding: 10px 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#addList {
+    background: #DFE3E6;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 275px;
+    padding: 5px 10px;
+    float: left;
+    margin-right: 15px;
+    display: none;
+}
+
+#addListTitleInput {
+    font-family: 'Lato', sans-serif;
+    padding: 7px 10px;
+    background: white;
+    width: 250px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    font-size: 15px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+    -moz-box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+    box-shadow: 1px 1px 1px 0px rgb(186, 186, 186);
+  }
+
+.addList-btn {
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 5px;
+    float: left;
+    background-color: #f5df4d;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.addList-btn:hover{
+    background-color: #f8df8c;
+}
+
+.close {
+    float: left;
+    display: flex;
+    height: 28px;
+    width: 28px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+  }
+
+.close:hover {
+    color: #6e7579;
+    cursor: pointer;
+}

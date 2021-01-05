@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* pwdForgot reset contents */
+.pwdForgot-reset-wrapper{
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	color: #fff;
+	text-align: center;
+	padding-top: 65px;
+}
+
+.pwdForgot-reset-contents{
+	width: 300px;
+	height: fit-content;
+	align-self: center;
+	margin-bottom: 100px;
+}
+
+/* */
+.pwdForgot-reset-message1{
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+.pwdForgot-reset-message2{
+	font-size: 0.8rem;
+	font-weight: 100;
+	margin-bottom: 50px;
+}
+
+.pwdForgot-reset-pwd-wrapper{
+	margin-bottom: 4px;
+}
+.pwdForgot-reset-pwd-letter{
+	font-size: 0.95rem;
+	text-align: left;
+	margin: 5px 8px;
+}
+.pwdForgot-reset-pwd{
+	width: 100%;
+	height: auto;
+	line-height: normal;
+	padding: .6em;
+	font-family: inherit;
+	border: 1px solid #999;
+	border-radius: 20px;
+	outline-style: none;
+	-webkit-appearance: none;
+}
+.pwdForgot-reset-pwd-check{
+	color: #fe0000;
+	text-align: left;
+	font-size: 0.8rem;
+	font-weight: 200;
+	padding: 3px 3px 3px 10px;
+}
+
+
+
+/* password forgot reset page button */
+.pwdForgot-reset-btn-wrapper{
+	margin-top: 30px;
+}
+
+.pwdForgot-reset-btn{
+	width: 100%;
+	background-color: #f2dd68;
+	border: none;
+	border-radius: 20px;
+	color: #31353d;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 8px 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+.pwdForgot-reset-btn:hover{
+	background-color: #31353d;
+	color: #f2dd68;
+}

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+/* userEdit modal wrappers */
+#calendar_modal_background{
+	display: none;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    z-index: 101;
+	background-color: #000000c2;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(2.2px);
+}
+
+.calendar-contents-wrapper{
+	display: none;
+	position: absolute;
+	top: 15%;
+	right: 30%;
+	width: 380px;
+	z-index: 103;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: rgba(0,0,0,0.5) 0px 2px 6px 2px;
+	text-align: center;
+}
+
+
+/***********************************************/
+/* userEdit contents */
+.calendar-title{
+	text-align: center;
+	font-size: 2rem;
+	font-weight: 700;
+	border-bottom: 2px solid #000;
+	padding: 10px;
+	margin: 10px 30px;
+}
+
+/* password */
+.calendar-outer-wrapper{
+	padding: 20px;
+}
+
+.calendar-inner-wrapper{
+	margin-bottom: 5px;
+}
+.calendar-letter{
+	font-size: 0.9rem;
+	font-weight: 600;
+	text-align: left;
+	margin: 5px 8px;
+}
+.calendar-input{
+	width: 100%;
+	height: auto;
+	line-height: normal;
+	padding: .6em;
+	font-family: inherit;
+	border: 1px solid #999;
+	border-radius: 20px;
+	outline-style: none;
+	-webkit-appearance: none;
+}
+
+
+/* button */
+.calendar-btn-wrapper{
+	margin-top: 20px;
+}
+
+.calendar-btn{
+	width: 100%;
+	background-color: #f2dd68;
+	border: none;
+	color: #31353d;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 12px 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+.calendar-btn:hover{
+	background-color: #31353d;
+	color: #f2dd68;
+}
+
+.calendar-main-withdrawal-wrapper{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.calendar-main-withdrawal-btn{
+width: 100%;
+    font-size: 1.5rem;
+    font-weight: 100;
+    font-family: none;
+    /* color: #fff; */
+    color: black;
+    text-decoration: none;
+    border: none;
+    border-radius: 12px;
+  /*   background-color: black; */
+    /* padding: 5px; */
+    -webkit-appearance: none;
+}
+.calendar-main-withdrawal-btn:hover{
+	cursor: pointer;
+}
+
+/***********************************************/
+/* responsive modal concerning userEdit modals */
+/* 1200px */
+@media only screen and (max-width: 1200px) {
+	.calendar-contents-wrapper {right: 25%;}
+}
+
+/* 992px */
+@media only screen and (max-width: 992px) {
+	.calendar-contents-wrapper {right: 20%;}
+}
+
+/* 768px */
+@media only screen and (max-width: 768px) {
+	.calendar-contents-wrapper {right: 23%;}
+}

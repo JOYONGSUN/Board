@@ -1,0 +1,66 @@
+@charset "UTF-8";
+/* login contents */
+.register-completed-wrapper{
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	color: #fff;
+	text-align: center;
+	padding-top: 65px;
+}
+
+.register-completed-contents{
+	width: 500px;
+	height: fit-content;
+	align-self: center;
+	margin-bottom: 100px;
+}
+
+.register-completed-image > img{
+	width:80%;
+}
+
+.register-completed-message1{
+	font-size: 2rem;
+	font-weight: 400;
+	margin-bottom: 30px;
+}
+.register-completed-message1 > span {
+	color: #f2dd68;
+	font-weight: 700;
+}
+
+.register-completed-message2{
+	font-size: 0.8rem;
+	font-weight: 100;
+	margin-bottom: 30px;
+}
+.register-completed-message2 > span{
+	color: #f2dd68;
+}
+
+
+/* register completed button */
+.register-completed-btn-wrapper{
+	margin-top: 50px;
+}
+
+.register-completed-btn{
+	width: 60%;
+	background-color: #f2dd68;
+	border: none;
+	border-radius: 20px;
+	color: #31353d;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 8px 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+.register-completed-btn:hover{
+	background-color: #31353d;
+	color: #f2dd68;
+}

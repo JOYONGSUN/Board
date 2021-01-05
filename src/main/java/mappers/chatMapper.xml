@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.bit.dao.ChatDao">
+	
+	<!-- public List<user> chatUserList(); -->
+	<select id="chatUserList" resultType="userDto">
+		SELECT EMAIL, NICKNAME, PROFILE FROM USER
+	</select>
+	
+	<!-- public List<user> chatUserListByEmail(String[] user_array); -->
+	<select id="chatUserListByEmail" parameterType="java.util.ArrayList" resultType="userDto">
+		SELECT EMAIL, NICKNAME, PROFILE FROM USER
+		WHERE EMAIL IN (
+			<foreach collection="array" item="item" index="index" separator=",">
+				#{item}
+			</foreach>
+		)
+	</select>
+	
+	<select id="selectedUserClose" parameterType="java.util.ArrayList" resultType="userDto">
+		SELECT EMAIL, NICKNAME, PROFILE FROM USER
+		WHERE EMAIL IN (
+			<foreach collection="user_array" item="item" index="index" separator=",">
+				#{item}
+			</foreach>
+		)
+	</select>
+	
+	<!-- public void insertChattingRoom(String chatting_room_name); -->
+	<insert id="insertChattingRoom">
+		INSERT INTO CHATTINGROOM(CHATTING_ROOM_NAME,PROJECT_SEQ)
+		VALUES(#{chatting_room_name},1)
+	</insert>
+	
+	<!-- public void countRoom(); -->
+	<select id="countRoom" resultType="int">
+		SELECT COUNT(*) FROM CHATTINGROOM
+	</select>
+	
+	<!-- public room getChattingRoomByName(String chatting_room_name); -->
+	<!-- 
+	<select id="getChattingRoomByName" resultType="roomDto">
+		SELECT CHATTING_ROOM_SEQ, CHATTING_ROOM_NAME, PROJECT_SEQ 
+		FROM CHATTINGROOM WHERE CHATTING_ROOM_NAME = #{chatting_room_name}
+	</select>
+	 -->
+	
+	<!-- public void insertChattingRoomList(HashMap<String, Object> map); -->
+	<insert id="insertChattingRoomList" parameterType="hashMap">
+		INSERT INTO CHATTINGROOMLIST(CHATTING_ROOM_SEQ, EMAIL)
+		VALUES
+			<foreach collection="user_array" item="item" index="index" separator=",">
+				(#{room_number},#{item})
+			</foreach>
+	</insert>
+	 
+	<!-- public List<room> getRoomList(); -->
+	<select id="getRoomList" resultType="roomDto">
+		SELECT CHATTING_ROOM_SEQ, CHATTING_ROOM_NAME, PROJECT_SEQ 
+		FROM CHATTINGROOM
+	</select>
+	
+	<!-- public room getRoomListBySeq(int chatting_room_seq); -->
+	<select id="getRoomListBySeq" resultType="roomDto" parameterType="int">
+		SELECT CHATTING_ROOM_SEQ, CHATTING_ROOM_NAME, PROJECT_SEQ 
+		FROM CHATTINGROOM 
+		WHERE CHATTING_ROOM_SEQ = ${room_seq}
+	</select>
+	
+	<!-- public List<user> searchUser(String searchKeyword); -->
+	<select id="searchUser" resultType="userDto">
+		SELECT EMAIL, NICKNAME, PROFILE FROM USER
+		WHERE NICKNAME LIKE CONCAT('%',#{param1},'%')
+	</select>
+	
+	<select id="searchAnotherUser" parameterType="hashMap" resultType="userDto">
+		SELECT EMAIL, NICKNAME, PROFILE FROM USER
+		WHERE EMAIL NOT IN (
+			<foreach collection="user_array" item="item" index="index" separator=",">
+				#{item}
+			</foreach>
+		) AND
+		NICKNAME LIKE CONCAT('%',#{nickName},'%')
+	</select>
+	
+	<!-- public void deleteRoom(int chatting_room_seq); -->
+	<delete id="deleteRoom">
+		DELETE FROM CHATTINGROOM WHERE CHATTING_ROOM_SEQ = #{chatting_room_seq}
+	</delete>
+	
+	<!-- public void deleteRoomList(int chatting_room_seq); -->
+	<delete id="deleteRoomList">
+		DELETE FROM CHATTINGROOMLIST WHERE CHATTING_ROOM_SEQ = #{chatting_room_seq}
+	</delete>
+	
+	<!-- public void updateRoom(int chatting_room_seq, String chatting_room_name); -->
+	<update id="updateRoom">
+		UPDATE CHATTINGROOM 
+		SET CHATTING_ROOM_NAME = #{param2}
+		WHERE CHATTING_ROOM_SEQ = #{param1}
+	</update>
+
+	<!-- public List<room> searchRoom(String searchKeyword); -->
+	<select id="searchRoom" resultType="roomDto">
+		SELECT CHATTING_ROOM_SEQ, CHATTING_ROOM_NAME, PROJECT_SEQ 
+		FROM CHATTINGROOM WHERE CHATTING_ROOM_NAME LIKE CONCAT('%',#{searchKeyword},'%')
+	</select>
+	
+	
+	<!-- public List<roomlist> getChattingRoomList(int chatting_room_seq); -->
+	<select id="getChattingRoomList" resultType="roomlistDto">
+		SELECT U.NICKNAME, C.CHATTING_ROOM_SEQ
+		FROM CHATTINGROOMLIST L JOIN USER U
+		ON U.EMAIL = L.EMAIL
+		JOIN CHATTINGROOM C
+		ON L.CHATTING_ROOM_SEQ = C.CHATTING_ROOM_SEQ
+		WHERE C.CHATTING_ROOM_SEQ = #{chatting_room_seq}
+	</select>
+	
+</mapper>

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+/* login-Register left navbar */
+.login-left-navbar-wrapper{
+	position: absolute;
+	top: 200px;
+	height: 563px;
+	align-self: center;
+	margin-bottom: 50px;
+}
+.login-left-navbar-letter{
+	color: #808080;
+	font-size: 0.9rem;
+	font-weight: 500;
+	padding-left: 20px;
+	margin-left: 40px;
+	margin-bottom: 40px;
+}
+.login-left-navbar-letter-active{
+	color: #f2dd68;
+	border-left: 2px solid #f2dd68;
+	font-size: 0.9rem;
+	font-weight: 500;
+	padding-left: 20px;
+	margin-left: 40px;
+	margin-bottom: 40px;
+}
+.login-left-navbar-letter:hover{
+	color: #f2dd68;
+	border-left: 2px solid #f2dd68;
+	cursor: pointer;
+}

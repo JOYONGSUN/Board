@@ -1,0 +1,146 @@
+#user table 
+CREATE TABLE user (
+    email varchar(200) NOT NULL,
+    nickName varchar(200) NOT NULL,
+	pwd varchar(200) NOT NULL,
+    enabled int NOT NULL DEFAULT 1,
+    PRIMARY KEY (email)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#role table
+CREATE TABLE role (
+	email varchar(200) NOT NULL,
+    ROLE_NAME varchar(200) NOT NULL,
+	FOREIGN KEY (email) REFERENCES user(email)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#role 권한 부여 트리거 
+DELIMITER $$
+CREATE TRIGGER insert_role_trigger
+AFTER INSERT ON user
+FOR EACH ROW
+BEGIN
+	IF NEW.email = 'admin' THEN
+    INSERT INTO role (email, ROLE_NAME) values (NEW.email, 'ROLE_ADMIN'),(NEW.email, 'ROLE_USER');
+    ELSE
+    INSERT INTO role values(NEW.email, 'ROLE_USER');
+    END IF;
+END $$
+DELIMITER ;
+
+#프로젝트 테이블 
+CREATE TABLE PROJECT(
+	PROJECT_SEQ int NOT NULL,
+	PROJECT_NAME varchar(45) NOT NULL,
+	LEADER_EMAIL varchar(45) NOT NULL,
+	FOREIGN KEY (LEADER_EMAIL) REFERENCES user(email),
+	PRIMARY KEY (PROJECT_SEQ)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#칸반 리스트 테이블 
+CREATE TABLE KANBANLIST(
+	LIST_SEQ int NOT NULL,
+	LIST_NAME varchar(45) NOT NULL,
+	LIST_ORDER_NUM int NOT NULL,
+	PROJECT_SEQ int NOT NULL,
+	PRIMARY KEY (LIST_SEQ),
+	FOREIGN KEY (PROJECT_SEQ) REFERENCES PROJECT(PROJECT_SEQ)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#칸반 카드 테이블 
+CREATE TABLE KANBANCARD(
+	CARD_SEQ int NOT NULL,
+	CARD_NAME varchar(45) NOT NULL,
+	CARD_ORDER_NUM varchar(200) NOT NULL,
+	CARD_CONTENT varchar(200) DEFAULT NULL,
+	PROJECT_SEQ int NOT NULL,
+	PRIMARY KEY (CARD_SEQ),
+	FOREIGN KEY (PROJECT_SEQ) REFERENCES PROJECT(PROJECT_SEQ)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#1. 시퀀스 테이블 생성 (변경하는것 없이 그대로 실행)
+
+CREATE TABLE sequences ( name varchar(32), currval BIGINT UNSIGNED ) ENGINE=InnoDB;
+ 
+#2. 시퀀스 프로시저 생성(변경하는것 없이 그대로 실행)
+ 
+DELIMITER $$
+CREATE PROCEDURE `create_sequence`(IN the_name text)
+MODIFIES SQL DATA
+DETERMINISTIC
+BEGIN
+    DELETE FROM sequences WHERE name=the_name;
+    INSERT INTO sequences VALUES (the_name, 0);
+END $$
+DELIMITER;
+ 
+#3. nextval function 생성(변경하는것 없이 그대로 실행)
+ 
+ DELIMITER $$ 
+ CREATE FUNCTION `nextval`(the_name varchar(32))
+ RETURNS BIGINT UNSIGNED
+ MODIFIES SQL DATA
+ DETERMINISTIC
+ BEGIN
+     DECLARE ret BIGINT UNSIGNED;
+     UPDATE sequences SET currval=currval+1 WHERE name=the_name;
+     SELECT currval INTO ret FROM sequences WHERE name=the_name limit 1;
+     RETURN ret;
+ END $$
+ DELIMITER ;
+ 
+#4. 시퀀스명 입력 및 0값 넣기 (Statistics_seq 대신 원하는 시퀀스 명을 넣을 것)
+INSERT INTO sequences VALUES ('project_seq', 0);
+ 
+#5. nextval 값 가져오기 ('Statistics_seq' 대신 생성한 시퀀스 명을 넣을 것)
+
+select nextval('project_seq') as project_seq from dual;
+ 
+#nextval('project_seq')
+
+#칸반 카드 & 리스트 샘플 데이터 -------------------------------------------
+
+INSERT INTO project(project_seq, project_name, leader_email) values(1, 'pie', 'cavok699@naver.com');
+
+INSERT INTO kanbanlist(list_seq, list_name, LIST_ORDER_NUM, PROJECT_SEQ) values(1, 'to-do', 1, 1);
+INSERT INTO kanbanlist(list_seq, list_name, LIST_ORDER_NUM, PROJECT_SEQ) values(2, 'in progress', 2, 1);
+INSERT INTO kanbanlist(list_seq, list_name, LIST_ORDER_NUM, PROJECT_SEQ) values(3, 'done', 3, 1);
+INSERT INTO kanbanlist(list_seq, list_name, LIST_ORDER_NUM, PROJECT_SEQ) values(4, 'new', 4, 1);
+
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(1, '1번', '1-1', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(2, '2번', '1-2', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(3, '3번', '1-3', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(4, '4번', '2-1', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(5, '5번', '2-2', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(6, '6번', '2-3', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(7, '7번', '3-1', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(8, '8번', '3-2', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(9, '9번', '3-3', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(10, '10번', '4-1', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(11, '11번', '4-2', '아무말', 1);
+INSERT INTO kanbancard(CARD_SEQ, CARD_NAME, CARD_ORDER_NUM, CARD_CONTENT, PROJECT_SEQ) values(12, '12번', '4-3', '아무말', 1);
+commit;
+
+#샘플 데이터 끝 ---------------------------------------------------------
+ 
+#project_member table
+CREATE TABLE project_member (
+	PROJECT_SEQ int NOT NULL,
+    EMAIL varchar(200) NOT NULL,
+    FOREIGN KEY (PROJECT_SEQ) REFERENCES PROJECT(PROJECT_SEQ),
+    FOREIGN KEY (EMAIL) REFERENCES user(email)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#project_member 부여 트리거 
+DELIMITER $$
+CREATE TRIGGER insert_project_member_trigger
+AFTER INSERT ON project
+FOR EACH ROW
+BEGIN    
+    INSERT INTO PROJECT_MEMBER (PROJECT_SEQ, EMAIL) VALUES (NEW.PROJECT_SEQ, NEW.LEADER_EMAIL);
+END $$
+DELIMITER ;
+
+#seq = 3개 project_seq, card_seq, list_seq 
+ 
+

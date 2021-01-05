@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/* pwdForgot contents */
+.pwdForgot-emailRequest-wrapper{
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	color: #fff;
+	text-align: center;
+	padding-top: 65px;
+}
+
+.pwdForgot-emailRequest-contents{
+	width: 330px;
+	height: fit-content;
+	align-self: center;
+	background-color: #2b2e35;
+	padding-top: 40px;
+	margin-bottom: 100px;
+	box-shadow: rgba(0,0,0,0.5) 0px 2px 6px 2px;
+}
+
+.pwdForgot-emailRequest-icon{
+	margin-bottom: 30px;
+	
+}
+.pwdForgot-emailRequest-icon > i{
+	width: 100px;
+	height: 100px;
+	background-color: #fff;
+	color: #808080;
+	font-size: 3.5rem;
+	border-radius: 100%;
+	padding-top: 22px;
+}
+
+.pwdForgot-emailRequest-letter1{
+	font-size: 1.6rem;
+	font-weight: 700;
+	margin-bottom: 30px;
+}
+.pwdForgot-emailRequest-letter1 > span {
+	color: #f2dd68;
+}
+
+.pwdForgot-emailRequest-letter2{
+	font-size: 0.8rem;
+	font-weight: 100;
+}
+
+/* pwdForgot email request button */
+.pwdForgot-emailRequest-btn-wrapper{
+	margin-top: 50px;
+}
+
+.pwdForgot-emailRequest-btn{
+	width: 100%;
+	background-color: #f2dd68;
+	border: none;
+	color: #31353d;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 12px 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+.pwdForgot-emailRequest-btn:hover{
+	background-color: #31353d;
+	color: #f2dd68;
+}

@@ -1,0 +1,159 @@
+@charset "UTF-8";
+/* login contents */
+.register-wrapper{
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	padding-top: 65px;
+	color: #fff;
+	overflow: auto;
+}
+
+.register-contents{
+	width: 270px;
+	height: fit-content;
+	align-self: center;
+    margin-bottom: -20px;
+}
+
+/* register user profile picture */
+.register-user-pic-wrapper{
+	display: flex;
+	justify-content: center;
+	padding-left: 45px;
+}
+.register-user-pic > i{
+	width: 150px;
+    height: 150px;
+    font-size: 7.5rem;
+    background-color: #fff;
+    color: #29aae1;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 100%;
+}
+
+.register-user-pic-select-wrapper{
+    position: relative;
+    top: 98px;
+    left: -34px;
+    width: 50px;
+    height: 50px;
+}
+.register-user-pic-select-wrapper > i{
+	background-color: #000;
+	width: 40px;
+	height: 40px;
+	font-size: 1.6rem;
+	text-align: center;
+	padding-top: 8px;
+	border-radius: 100%;
+}
+.register-user-pic-select-wrapper > i:hover{
+	background-color: #f2dd68;
+	color: #31353d;
+	cursor: pointer;
+}
+
+/* form */
+.register-form{
+	font-size: 0.9rem;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/* email */
+.register-email-wrapper{
+	margin-bottom: 4px;
+}
+.register-email-letter{
+	margin: 3px 5px;
+}
+.register-email{
+	width: 100%;
+	height: auto;
+	line-height: normal;
+	padding: .6em;
+	font-family: inherit;
+	border: 1px solid #999;
+	border-radius: 20px;
+	outline-style: none;
+	-webkit-appearance: none;
+}
+.register-email-check{
+	color: #fe0000;
+	font-size: 0.8rem;
+	font-weight: 200;
+	padding: 3px 3px 3px 10px;
+}
+
+/* name */
+.register-name-wrapper{
+	margin-bottom: 15px;
+}
+.register-name-letter{
+	margin: 3px 5px;
+}
+.register-name{
+	width: 100%;
+	height: auto;
+	line-height: normal;
+	padding: .6em;
+	font-family: inherit;
+	border: 1px solid #999;
+	border-radius: 20px;
+	outline-style: none;
+	-webkit-appearance: none;
+}
+
+/* password */
+.register-password-wrapper{
+	margin-bottom: 10px;
+}
+.register-password-letter{
+	margin: 3px 5px;
+}
+.register-password-check{
+	color: #fe0000;
+	font-size: 0.8rem;
+	font-weight: 200;
+	padding: 3px 3px 3px 10px;
+}
+.register-password{
+	width: 100%;
+	height: auto;
+	line-height: normal;
+	padding: .6em;
+	font-family: inherit;
+	border: 1px solid #999;
+	border-radius: 20px;
+	outline-style: none;
+	-webkit-appearance: none;
+}
+
+
+/* register button */
+.register-btn-wrapper{
+	margin-top: 50px;
+	margin-bottom: 60px;
+}
+
+.register-btn{
+	width: 100%;
+	background-color: #f2dd68;
+	border: none;
+	border-radius: 40px;
+	color: #31353d;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 5px;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+.register-btn:hover{
+	background-color: #31353d;
+	color: #f2dd68;
+}

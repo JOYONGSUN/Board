@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/* userEdit pwdCheck wrappers */
+.userEdit-pwdCheck-contents-wrapper{
+	display: none;
+	position: absolute;
+	top: 15%;
+	right: 30%;
+	width: 380px;
+	z-index: 103;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: rgba(0,0,0,0.5) 0px 2px 6px 2px;
+	text-align: center;
+}
+
+
+/***********************************************/
+/* userEdit pwdCheck contents */
+.userEdit-pwdCheck-top-wrapper{
+	display: flex;
+	justify-content: space-around;
+	margin: 50px 10px 30px 10px;
+}
+.userEdit-pwdCheck-top-wrapper .top-wrapper1{
+	text-align: -webkit-center;
+	padding: 0 20px;
+	border-bottom: 1px solid #000;
+}
+.userEdit-pwdCheck-top-wrapper .top-wrapper2{
+	text-align: -webkit-center;
+	padding: 0 20px;
+}
+.userEdit-pwdCheck-top-wrapper .top-number1{
+	width: 30px;
+	height: 30px;
+	font-weight: 700;
+	background-color: #f2dd68;
+	border: 2px solid #000;
+	border-radius: 100%;
+	padding-top: 1px;
+	margin-bottom: 10px;
+}
+.userEdit-pwdCheck-top-wrapper .top-number2{
+	width: 30px;
+	height: 30px;
+	font-weight: 700;
+	background-color: #fff;
+	border: 2px solid #000;
+	border-radius: 100%;
+	padding-top: 1px;
+	margin-bottom: 10px;
+}
+.userEdit-pwdCheck-top-wrapper .top-letter{
+	font-size: 0.8rem;
+	font-weight: 300;
+	padding-bottom: 5px;
+}
+
+
+/* title */
+.userEdit-pwdCheck-title{
+	text-align: center;
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+.userEdit-pwdCheck-subTitle{
+	text-align: center;
+	font-size: 0.8rem;
+	font-weight: 200;
+	margin-bottom: 40px;
+}
+
+
+
+/* password */
+.userEdit-pwdCheck-pwd-outer-wrapper{
+	padding: 20px;
+}
+
+.userEdit-pwdCheck-pwd-inner-wrapper{
+	margin-bottom: 5px;
+}
+.userEdit-pwdCheck-pwd-letter{
+	font-size: 0.9rem;
+	font-weight: 600;
+	text-align: left;
+	margin: 5px 8px;
+}
+.userEdit-pwdCheck-pwd{
+	width: 100%;
+	height: auto;
+	line-height: normal;
+	padding: .6em;
+	font-family: inherit;
+	border: 1px solid #999;
+	border-radius: 20px;
+	outline-style: none;
+	-webkit-appearance: none;
+}
+.userEdit-pwdCheck-pwd-check{
+	color: #fe0000;
+	text-align: left;
+	font-size: 0.8rem;
+	font-weight: 200;
+	padding: 3px 3px 3px 10px;
+}
+
+/* button */
+.userEdit-pwdCheck-btn-wrapper{
+	margin-top: 20px;
+}
+
+.userEdit-pwdCheck-btn{
+	width: 100%;
+	background-color: #f2dd68;
+	border: none;
+	color: #31353d;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 12px 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+.userEdit-pwdCheck-btn:hover{
+	background-color: #31353d;
+	color: #f2dd68;
+}
+
+/***********************************************/
+/* responsive modal concerning userEdit modals */
+/* 1200px */
+@media only screen and (max-width: 1200px) {
+	.userEdit-pwdCheck-contents-wrapper {right: 25%;}
+}
+
+/* 992px */
+@media only screen and (max-width: 992px) {
+	.userEdit-pwdCheck-contents-wrapper {right: 20%;}
+}
+
+/* 768px */
+@media only screen and (max-width: 768px) {
+	.userEdit-pwdCheck-contents-wrapper {right: 23%;}
+}

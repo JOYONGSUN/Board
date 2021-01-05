@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	
+	<!-- login 성공시 동작하는 핸들러 객체 -->
+	<context:component-scan base-package="kr.or.bit.util"></context:component-scan>
+	
+	<security:http use-expressions="true" auto-config="true">
+	<security:csrf disabled="true"/>
+	<security:form-login default-target-url="/main.pie"
+						 login-page="/index.htm"
+						 authentication-failure-url="/index.htm?error"
+						 authentication-success-handler-ref="loginSuccessHandler"/>
+	<security:logout logout-success-url="/index.htm"/> 
+	
+
+	<!--
+	<security:intercept-url pattern="/customer/*Reg.htm" access="hasRole('ROLE_USER')" />
+  	<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+  	 -->
+  	<security:session-management invalid-session-url="/index.htm"><!-- 세션 타임아웃 때 이동 url -->
+	<security:concurrency-control expired-url="/index.htm" /><!-- 중복 로그인 발생시 이동 url 처음 접속한 세션이 invalidate가 됨 -->
+	</security:session-management>
+	</security:http>
+
+<security:authentication-manager>
+	<security:authentication-provider>
+	<security:jdbc-user-service data-source-ref="dataSource" 
+	   							users-by-username-query="SELECT email, pwd AS PASSWORD, enabled FROM user where email=?" 
+	   							authorities-by-username-query="select u.email , r.ROLE_NAME   
+						            						   from user u join role r on u.email = r.email 
+						           							   where u.email=?" />
+<security:password-encoder ref="bCryptPasswordEncoder"/>
+</security:authentication-provider>
+</security:authentication-manager>
+</beans>
+
+
+
+
+
+
+

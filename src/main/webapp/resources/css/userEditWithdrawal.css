@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+/* userEdit withdrawal wrappers */
+.userEdit-withdrawal-contents-wrapper{
+	display: none;
+	position: absolute;
+	top: 15%;
+	right: 30%;
+	width: 380px;
+	z-index: 103;
+	background-color: #26292f;
+	border-radius: 5px;
+	box-shadow: rgba(0,0,0,0.5) 0px 2px 6px 2px;
+	text-align: center;
+}
+
+
+/***********************************************/
+/* userEdit withdrawal contents */
+.userEdit-withdrawal-logo{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+.userEdit-withdrawal-logo > img{
+	width: 35%;
+}
+
+.userEdit-withdrawal-message1{
+	color: #fff;
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+.userEdit-withdrawal-message1 > span {
+	color: #f2dd68;
+}
+.userEdit-withdrawal-message2{
+	color: #fff;
+	font-size: 0.8rem;
+	font-weight: 200;
+	margin-bottom: 50px;
+}
+
+
+/* button */
+.userEdit-withdrawal-btn-wrapper{
+	margin-top: 20px;
+}
+
+.userEdit-withdrawal-btn{
+	width: 100%;
+	background-color: #f2dd68;
+	border: none;
+	color: #31353d;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 12px 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+.userEdit-withdrawal-btn:hover{
+	background-color: #31353d;
+	color: #f2dd68;
+}
+
+/***********************************************/
+/* responsive modal concerning userEdit modals */
+/* 1200px */
+@media only screen and (max-width: 1200px) {
+	.userEdit-withdrawal-contents-wrapper {right: 25%;}
+}
+
+/* 992px */
+@media only screen and (max-width: 992px) {
+	.userEdit-withdrawal-contents-wrapper {right: 20%;}
+}
+
+/* 768px */
+@media only screen and (max-width: 768px) {
+	.userEdit-withdrawal-contents-wrapper {right: 23%;}
+}
