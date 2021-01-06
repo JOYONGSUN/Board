@@ -11,6 +11,8 @@
 		<typeAlias type="kr.or.bit.dto.project" alias="projectDto"/>
 		<typeAlias type="kr.or.bit.dto.room" alias="roomDto"/>
 		<typeAlias type="kr.or.bit.dto.roomlist" alias="roomlistDto"/>
+		<typeAlias type="kr.or.bit.dto.project_member" alias="project_memberDto"/>
+		<typeAlias type="kr.or.bit.dto.checkList" alias="checkListDto"/>
 	</typeAliases>
 </configuration>
 

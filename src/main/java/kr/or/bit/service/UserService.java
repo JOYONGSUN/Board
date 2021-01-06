@@ -1,21 +1,16 @@
 package kr.or.bit.service;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineFactoryBean;
 import org.springframework.ui.velocity.VelocityEngineUtils;
-
 import kr.or.bit.dao.UserDao;
 import kr.or.bit.dto.user;
 
@@ -67,7 +62,24 @@ public class UserService {
 		messageHelper.setSubject(MimeUtility.encodeText("회원가입 이메일")); // 메일제목은 생략이 가능하다
 		messageHelper.setText(mailBody, true);
 		mailSender.send(message);
-
+	}
+	
+	// 초대 이메일 전송 서비스
+	public void inviteEmail(String email, int projectNum, String fromWho, String fromProjectName) throws Exception {
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+		Map model = new HashMap();
+		model.put("projectNum", projectNum);
+		model.put("email", email);
+		model.put("fromWho", fromWho);
+		model.put("fromProjectName", fromProjectName);
+		String mailBody = VelocityEngineUtils.mergeTemplateIntoString( // 보내는 이메일
+				velocityEngineFactoryBean.createVelocityEngine(), "invite.vm", "UTF-8", model);
+		messageHelper.setFrom("jgdoh92@naver.com"); // 보내는사람 생략하거나 하면 정상작동을 안함
+		messageHelper.setTo(email); // 받는사람 이메일
+		messageHelper.setSubject(MimeUtility.encodeText("우리 파이에 팀이 되어줘 !")); // 메일제목은 생략이 가능하다
+		messageHelper.setText(mailBody, true);
+		mailSender.send(message);
 	}
 	
 	// 비밀번호 변경 인증번호 전송 서비스
@@ -85,7 +97,6 @@ public class UserService {
 		messageHelper.setSubject(MimeUtility.encodeText("비밀번호 변경 인증번호")); // 메일제목은 생략이 가능하다
 		messageHelper.setText(mailBody, true);
 		mailSender.send(message);
-
 	}
 	
 	//비밀번호 변경 

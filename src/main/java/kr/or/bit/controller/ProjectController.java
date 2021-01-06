@@ -1,7 +1,10 @@
 package kr.or.bit.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
+
 import kr.or.bit.dto.project;
+import kr.or.bit.dto.project_member;
 import kr.or.bit.service.ProjectService;
+import kr.or.bit.service.UserService;
 
 /*
 파일명: ProjectController.java
@@ -22,7 +28,10 @@ import kr.or.bit.service.ProjectService;
 */
 @Controller
 public class ProjectController {
-	
+
+		@Autowired
+		private UserService userservice;
+
 		@Autowired
 		private View jsonview;
 		
@@ -91,7 +100,54 @@ public class ProjectController {
 			return jsonview;
 			}
 		
+		//팀원 초대하기 
+		@ResponseBody
+		@RequestMapping(value = "invitePIE.pie", method = RequestMethod.POST)
+		public View invitePIE(@RequestBody Map<String, Object> data,
+							  Model model){
+			System.out.println(data);
+			int projectNum = (int)data.get("finalProjectNum");
+			ArrayList<String> pies = (ArrayList<String>)data.get("finalPie");
+			String fromWho = (String)data.get("finalFromWho");
+			String fromProjectName = (String)data.get("finalFromProjectName");
+			
+			for(int i = 0; i < pies.size(); i++) {
+				try {
+					userservice.inviteEmail(pies.get(i), projectNum, fromWho, fromProjectName);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+				}	
+			}
+			model.addAttribute("data","success");
+			return jsonview;
+			}
 		
+		//초대 받기 
+		@RequestMapping(value = "joinToPie.pie", method = RequestMethod.GET)
+		public String joinToPie(@RequestParam("projectNum")int projectNum, 
+							  @RequestParam("email")String email){
+			project_member pm = projectservice.isExistFromProjectService(projectNum, email);
+			if(pm == null) {
+				try {
+					projectservice.joinToPieAsTeamService(projectNum, email);
+				} catch (Exception e) {
+					System.out.println("회원가입 필요");
+					return "etc/pleaseJoinFirst";
+				}
+				
+				System.out.println("파이 합류 성공");
+				return "etc/successedToJoinPie";
+				//여기서 인서트 
+			}else {
+				//중복 중복 
+				System.out.println("중복된 데이터");
+				return "etc/failedToJoinPie";
+			}
+		}
+		
+		
+		//<a href ="http://localhost:8090/joinToPie.pie?projectNum=${projectNum}&email=${email}">파이에 합류하기!</a>
 		
 		
 	}				

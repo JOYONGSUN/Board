@@ -14,7 +14,6 @@
 		</div>
 		<!-- userEdit password -->
 		<div class="userEdit-pwd-outer-wrapper">
-			<form action="createPIE.pie" method = "post">
 				<!-- 비밀번호 입력 -->
 				<div class="userEdit-pwd-inner-wrapper">
 					<div class="userInvite-input-letter">
@@ -34,9 +33,8 @@
 				
 				<!-- create pie btn -->
 				<div class="userEdit-btn-wrapper">
-					<input type = "submit" class="userInvite-btn" value = "초대 메일 보내기">
+					<input type = "submit" id = "invite-submit" class="userInvite-btn" value = "초대 메일 보내기">
 				</div>
-			</form>
 		</div>
 </div>
 	

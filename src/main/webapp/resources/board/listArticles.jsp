@@ -18,12 +18,12 @@
   <title>글목록창</title>
 </head>
 <script>
-	function fn_boardForm(isLogOn,boardForm,loginForm){
+	function fn_articleForm(isLogOn,articleForm,loginForm){
 	  if(isLogOn != '' && isLogOn != 'false'){
-	    location.href=boardForm;
+	    location.href=articleForm;
 	  }else{
 	    alert("로그인 후 글쓰기가 가능합니다.")
-	    location.href=loginForm+'?action=/board/boardForm.pie';
+	    location.href=loginForm+'?action=/board/articleForm.do';
 	  }
 	}
 </script>
@@ -36,7 +36,7 @@
      <td >작성일</td>
   </tr>
 <c:choose>
-  <c:when test="${boardsList ==null }" >
+  <c:when test="${articlesList ==null }" >
     <tr  height="10">
       <td colspan="4">
          <p align="center">
@@ -45,34 +45,34 @@
       </td>  
     </tr>
   </c:when>
-  <c:when test="${boardsList !=null }" >
-    <c:forEach  var="board" items="${boardsList }" varStatus="boardNum" >
+  <c:when test="${articlesList !=null }" >
+    <c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
      <tr align="center">
-	<td width="5%">${boardNum.count}</td>
-	<td width="10%">${board.id }</td>
+	<td width="5%">${articleNum.count}</td>
+	<td width="10%">${article.id }</td>
 	<td align='left'  width="35%">
 	  <span style="padding-right:30px"></span>
 	   <c:choose>
-	      <c:when test='${board.level > 1 }'>  
-	         <c:forEach begin="1" end="${board.level }" step="1">
+	      <c:when test='${article.level > 1 }'>  
+	         <c:forEach begin="1" end="${article.level }" step="1">
 	              <span style="padding-left:20px"></span>    
 	         </c:forEach>
 	         <span style="font-size:12px;">[답변]</span>
-                   <a class='cls1' href="${contextPath}/board/viewboard.pie?boardNO=${board.boardNO}">${board.title}</a>
+                   <a class='cls1' href="${contextPath}/board/viewArticle.do?articleNO=${article.articleNO}">${article.title}</a>
 	          </c:when>
 	          <c:otherwise>
-	            <a class='cls1' href="${contextPath}/board/viewboard.pie?boardNO=${board.boardNO}">${board.title }</a>
+	            <a class='cls1' href="${contextPath}/board/viewArticle.do?articleNO=${article.articleNO}">${article.title }</a>
 	          </c:otherwise>
 	        </c:choose>
 	  </td>
-	  <td  width="10%">${board.writeDate}</td> 
+	  <td  width="10%">${article.writeDate}</td> 
 	</tr>
     </c:forEach>
      </c:when>
     </c:choose>
 </table>
 <!-- <a  class="cls1"  href="#"><p class="cls2">글쓰기</p></a> -->
-<a  class="cls1"  href="javascript:fn_boardForm('${isLogOn}','${contextPath}/board/boardForm.pie', 
-                                                    '${contextPath}/member/loginForm.pie')"><p class="cls2">글쓰기</p></a>
+<a  class="cls1"  href="javascript:fn_articleForm('${isLogOn}','${contextPath}/board/articleForm.do', 
+                                                    '${contextPath}/member/loginForm.do')"><p class="cls2">글쓰기</p></a>
 </body>
 </html>

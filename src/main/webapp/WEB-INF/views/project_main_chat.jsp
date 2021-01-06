@@ -5,6 +5,7 @@
 <body>
 	<div id="far fa-comment-dots" class="right-sidebar-chat">
 		<div id="crtChat-modal-background"></div>
+		<input type="hidden" value="${sessionScope.loginuser}" id="session_email">
 		<!-- chat create button -->
 		<div class="chat-createBtn-wrapper">
 			<button id="crtChatBtn" class="chat-createBtn">+ 채팅방 생성하기</button>
@@ -17,7 +18,7 @@
 		<div class="chat-search-wrapper">
 			<div class="chat-search-letter">채팅방 검색</div>
 			<div>
-				<input class="chat-search-box" type="search">
+				<input id="chat-search-box" class="chat-search-box" type="search">
 			</div>
 		</div>
 		

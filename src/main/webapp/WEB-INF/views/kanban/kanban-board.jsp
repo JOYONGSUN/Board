@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/css/kanbanDetailModal.css">
 <script src="/resources/js/kanban-board.js"></script>
 <script src="/resources/js/kanbanDetailModal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <title>KANBAN-BOARD</title>
 </head>
 <body>
@@ -52,7 +53,7 @@
                 </form>
                 <div id="checkListWrap">
 	            <h2 class="checkListTitle"><i class="fa fa-check"></i> CheckList</h2>
-	            <form id="checkListFrom">
+	            <form id="checkListForm">
 	                <div id="add-todo">
 	                    <i class="fa fa-plus"></i> Add an item
 	                </div>

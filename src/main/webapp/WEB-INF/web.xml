@@ -27,6 +27,7 @@
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
+		<!-- <async-supported>true</async-supported> -->
 	</servlet-mapping>
 
 	<!-- utf-8 filter -->
@@ -52,5 +53,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
 
 </web-app>

@@ -5,7 +5,8 @@
 	display: none;
 	position: absolute;
 	z-index: 102;
-	right: 100%;
+	left: -50%;
+	top: 15%;
 }
 #crtChat-modal-background{
     display: none;

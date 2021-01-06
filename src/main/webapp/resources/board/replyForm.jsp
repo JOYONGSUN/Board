@@ -14,7 +14,7 @@
 <script type="text/javascript">
 
  function backToList(obj){
- obj.action="${contextPath}/board/listBoard.pie";
+ obj.action="${contextPath}/board/listArticles.do";
  obj.submit();
  }
  
@@ -34,7 +34,7 @@
 
 <body>
  <h1>답글쓰기</h1>
-  <form name="frmReply" method="post"  action="${contextPath}/board/addReply.pie"   enctype="multipart/form-data">
+  <form name="frmReply" method="post"  action="${contextPath}/board/addReply.do"   enctype="multipart/form-data">
     <table>
     <tr>
 			<td align="right"> 작성자:&nbsp; </td>

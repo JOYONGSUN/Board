@@ -35,7 +35,7 @@ public class GoogleController {
 		if (isExist != null) {
 			// 아이디가 이미 존재하면 바로 메인 페이지로 이동
 			System.out.println("아이디 존재");
-			session.setAttribute("nick", isExist.getEmail());
+			session.setAttribute("nick", isExist.getNickName());
 			session.setAttribute("loginuser", loginuser);
 			return "main/main";
 		} else {

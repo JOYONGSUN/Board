@@ -139,6 +139,19 @@ html, body {
     display: inline-block;
 }
 
+.card-placeholder {
+    width: 245px;
+    height: 40px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #737B7F;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
 ::placeholder {
     color: #6e7579;
 }

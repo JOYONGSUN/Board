@@ -18,10 +18,10 @@
 			<div style = "background-color: #31353d; font-size: 2rem; font-weight: 400; margin-bottom: 30px;">
 				<span style = "color: #f2dd68;font-weight: 700;">파이</span>
 			</div>
-
+						 ${fromWho} 님이 팀 : ${fromProjectName}에 초대합니다 ! 
 			<!-- completed message2 -->
 			<div style = "background-color: #31353d; font-size: 0.8rem; font-weight: 100; margin-bottom: 30px;">
-				<a href ="http://192.168.0.134:8090/checkEmail.pie?check=${ranCheck}">회원가입</a>
+				<a href ="http://192.168.0.134:8090/joinToPie.pie?projectNum=${projectNum}&email=${email}">파이에 합류하기!</a>
 			</div>
 		</div>
 	</div>

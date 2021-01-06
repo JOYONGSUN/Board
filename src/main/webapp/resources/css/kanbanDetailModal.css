@@ -26,7 +26,7 @@
     padding: 20px;
     border: 1px solid #888;
     width: 40%;
-    height: 65%;
+    height: auto;
     border-radius: 15px;
 }
 
@@ -96,7 +96,7 @@
 
 .checkListTitle {
 	text-align: left;
-	padding: 20px 0;
+	padding: 0;
 	font-size: 30px;
 	font-weight: 200;
 	color: #454545;
@@ -108,8 +108,8 @@
 	color: #f5df4d;
 }
 
-#checkListFrom {
-	width : 80%;
+#checkListForm {
+	width : 95%;
 	margin: 20px auto 20px 5px;
 	padding: 50px;
 	background: white;
@@ -124,7 +124,7 @@
 	border-radius: 5px;
 }
 
-#checkListFrom:before {
+#checkListForm:before {
 	content: "";
 	position: absolute;
 	z-index: -1;
@@ -164,7 +164,7 @@ input[type="checkbox"] {
 	height: 0;
 	width: 0;
 	opacity: 0;
-	top: -600px;
+	/* top: -600px; */
 }
 
 .todo {
@@ -236,22 +236,22 @@ input[type="checkbox"] {
 	text-shadow: 1px 1px 0 white, -1px -1px 0 white;
 }
 
-:checked+.todo {
+input[type=checkbox]:checked + label.todo {
 	color: #717171;
 }
 
-:checked+.todo:before {
+input[type=checkbox]:checked + label.todo:before {
 	width: 100%;
 }
 
-:checked+.todo:after {
+input[type=checkbox]:checked + label.todo:after {
 	/*box-shadow*/
 	-webkit-box-shadow: inset 0 0 0 2px #0eb0b7;
 	-moz-box-shadow: inset 0 0 0 2px #0eb0b7;
 	box-shadow: inset 0 0 0 2px #0eb0b7;
 }
 
-:checked+.todo .fa-check {
+input[type=checkbox]:checked + label.todo .fa-check {
 	font-size: 20px;
 	line-height: 35px;
 	color: #0eb0b7;

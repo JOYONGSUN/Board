@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+파일명: projectMapper.xml
+설명: projectMapper.xml
+작성일: 2020-12-31 ~ 
+작성자: 문지연,변재홍
+ -->
+<mapper namespace="kr.or.bit.dao.Project_memberDao">
+
+	<select id = "isExistFromProject" resultType = "project_memberDto">
+		SELECT * FROM PROJECT_MEMBER WHERE PROJECT_SEQ = #{param1} AND EMAIL = #{param2}
+	</select>
+	
+	<insert id = "joinToPieAsTeam">
+		INSERT INTO PROJECT_MEMBER(PROJECT_SEQ, EMAIL) VALUES(#{param1}, #{param2}) 
+	</insert>
+
+</mapper>
+	
+
+
+
+
+
+
+
+
+
+

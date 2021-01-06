@@ -3,7 +3,36 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.board">
+<mapper namespace="kr.or.bit.dao.BoardDao">
+
+<select id="selectAllArticlesList" parameterType="" resultType="">
+</select>
+
+<insert id="insertNewArticle" parameterType="" resultType="">
+</insert>
+
+<select id="selectArticle" parameterType="" resultType="">
+</select>
+
+<update id="updateArticle" parameterType="" resultType="">
+</update>
+
+<delete id="deleteArticle" parameterType="" resultType="">
+</delete>
+
+<select id="selectImageFileList" parameterType="" resultType="">
+</select>
+
+<select id="selectNewImageFileNO" parameterType="" resultType="">
+</select>
+</mapper>
+
+
+
+
+
+
+
 <resultMap id="articlesResult" type="articleVO">
     <result property="level" column="level" />
     <result property="articleNO" column="articleNO" />
@@ -71,26 +100,6 @@
          CONNECT BY PRIOR  articleNO = parentNO )
     ]]>      
   </delete>
-
- <!--다중 이미지 추가 SQL문 -->   
-  <!--
-    <insert id="insertNewArticle"  parameterType="java.util.Map">
-    <![CDATA[
-      insert into t_board(articleNO, id, title, content, imageFileName)
-      values(#{articleNO}, #{id}, #{title}, #{content}, null)
-    ]]>      
-  </insert>
-
- 
-   <insert id="insertNewImage"  parameterType="java.util.Map">
-    <foreach item="item"  collection="list"   open="INSERT ALL" 
-                  separator=" " close="SELECT * FROM DUAL" >
-      INTO t_imageFile(imageFileNO, imageFileName, articleNO, regDate)
-      VALUES (#{item.imageFileNO}, #{item.imageFileName}, #{item.articleNO}, sysdate)
-    </foreach>
-  </insert>
- -->
- 
   <select id="selectNewImageFileNO" resultType="int"  >
     <![CDATA[
       SELECT  nvl(max(imageFileNO),0) from t_imageFile		

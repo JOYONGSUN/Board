@@ -6,8 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.bit.dao.ChatDao">
 	
 	<!-- public List<user> chatUserList(); -->
-	<select id="chatUserList" resultType="userDto">
-		SELECT EMAIL, NICKNAME, PROFILE FROM USER
+	<select id="chatUserList" resultType="userDto" parameterType="hashMap">
+		SELECT U.EMAIL, U.NICKNAME, U.PROFILE, P.PROJECT_SEQ 
+		FROM USER U JOIN PROJECT_MEMBER P
+		ON U.EMAIL = P.EMAIL
+		WHERE U.EMAIL NOT IN (#{sessionEmail})
+		AND P.PROJECT_SEQ = #{projectNum}
 	</select>
 	
 	<!-- public List<user> chatUserListByEmail(String[] user_array); -->
@@ -20,25 +24,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</select>
 	
-	<select id="selectedUserClose" parameterType="java.util.ArrayList" resultType="userDto">
-		SELECT EMAIL, NICKNAME, PROFILE FROM USER
-		WHERE EMAIL IN (
-			<foreach collection="user_array" item="item" index="index" separator=",">
-				#{item}
-			</foreach>
-		)
-	</select>
-	
 	<!-- public void insertChattingRoom(String chatting_room_name); -->
 	<insert id="insertChattingRoom">
 		INSERT INTO CHATTINGROOM(CHATTING_ROOM_NAME,PROJECT_SEQ)
-		VALUES(#{chatting_room_name},1)
+		VALUES(#{param1},#{param2})
 	</insert>
 	
-	<!-- public void countRoom(); -->
-	<select id="countRoom" resultType="int">
-		SELECT COUNT(*) FROM CHATTINGROOM
-	</select>
 	
 	<!-- public room getChattingRoomByName(String chatting_room_name); -->
 	<!-- 
@@ -55,12 +46,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<foreach collection="user_array" item="item" index="index" separator=",">
 				(#{room_number},#{item})
 			</foreach>
+		,(#{room_number},#{sessionEmail})
 	</insert>
 	 
 	<!-- public List<room> getRoomList(); -->
 	<select id="getRoomList" resultType="roomDto">
 		SELECT CHATTING_ROOM_SEQ, CHATTING_ROOM_NAME, PROJECT_SEQ 
 		FROM CHATTINGROOM
+		WHERE PROJECT_SEQ = #{projectNum}
 	</select>
 	
 	<!-- public room getRoomListBySeq(int chatting_room_seq); -->
@@ -72,18 +65,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- public List<user> searchUser(String searchKeyword); -->
 	<select id="searchUser" resultType="userDto">
-		SELECT EMAIL, NICKNAME, PROFILE FROM USER
-		WHERE NICKNAME LIKE CONCAT('%',#{param1},'%')
+		SELECT U.EMAIL, U.NICKNAME, U.PROFILE, P.PROJECT_SEQ
+		FROM USER U JOIN PROJECT_MEMBER P
+		ON U.EMAIL = P.EMAIL
+		WHERE NICKNAME LIKE CONCAT('%',#{nickName},'%')
+			AND P.PROJECT_SEQ = #{projectNum}
+			AND U.EMAIL NOT IN (#{sessionEmail})
 	</select>
 	
 	<select id="searchAnotherUser" parameterType="hashMap" resultType="userDto">
-		SELECT EMAIL, NICKNAME, PROFILE FROM USER
-		WHERE EMAIL NOT IN (
+		SELECT U.EMAIL, U.NICKNAME, U.PROFILE, P.PROJECT_SEQ 
+		FROM USER U JOIN PROJECT_MEMBER P
+		ON U.EMAIL = P.EMAIL
+		WHERE U.EMAIL NOT IN (
 			<foreach collection="user_array" item="item" index="index" separator=",">
 				#{item}
 			</foreach>
-		) AND
-		NICKNAME LIKE CONCAT('%',#{nickName},'%')
+		) 
+		AND U.NICKNAME LIKE CONCAT('%',#{nickName},'%')
+		AND P.PROJECT_SEQ = #{projectNum}
+		AND U.EMAIL NOT IN (#{sessionEmail})
+	</select>
+	
+	<select id="selectedUserClose" parameterType="java.util.ArrayList" resultType="userDto">
+		SELECT U.EMAIL, U.NICKNAME, U.PROFILE, P.PROJECT_SEQ 
+		FROM USER U JOIN PROJECT_MEMBER P
+		ON U.EMAIL = P.EMAIL
+		WHERE U.EMAIL IN (
+			<foreach collection="user_array" item="item" index="index" separator=",">
+				#{item}
+			</foreach>
+		)
+		AND P.PROJECT_SEQ = #{projectNum}
+		AND U.EMAIL NOT IN (#{sessionEmail})
 	</select>
 	
 	<!-- public void deleteRoom(int chatting_room_seq); -->
@@ -104,9 +118,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<!-- public List<room> searchRoom(String searchKeyword); -->
-	<select id="searchRoom" resultType="roomDto">
+	<select id="searchRoom" resultType="roomDto" parameterType="hashMap">
 		SELECT CHATTING_ROOM_SEQ, CHATTING_ROOM_NAME, PROJECT_SEQ 
-		FROM CHATTINGROOM WHERE CHATTING_ROOM_NAME LIKE CONCAT('%',#{searchKeyword},'%')
+		FROM CHATTINGROOM
+		WHERE CHATTING_ROOM_NAME LIKE CONCAT('%',#{searchKeyword},'%')
+		AND PROJECT_SEQ = #{projectNum}
 	</select>
 	
 	

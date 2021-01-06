@@ -5,8 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <%-- 
-<c:set var="board"  value="${boardMap.board}"  />
-<c:set var="imageFileList"  value="${boardMap.imageFileList}"  />
+<c:set var="article"  value="${articleMap.article}"  />
+<c:set var="imageFileList"  value="${articleMap.imageFileList}"  />
 
  --%>
 <%
@@ -28,7 +28,7 @@
    <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
    <script type="text/javascript" >
      function backToList(obj){
-	    obj.action="${contextPath}/board/listBoardes.pie";
+	    obj.action="${contextPath}/board/listArticles.do";
 	    obj.submit();
      }
  
@@ -41,21 +41,21 @@
 		 document.getElementById("tr_btn").style.display="none";
 	 }
 	 
-	 function fn_modify_board(obj){
-		 obj.action="${contextPath}/board/modBoard.pie";
+	 function fn_modify_article(obj){
+		 obj.action="${contextPath}/board/modArticle.do";
 		 obj.submit();
 	 }
 	 
-	 function fn_remove_board(url,boardNO){
+	 function fn_remove_article(url,articleNO){
 		 var form = document.createElement("form");
 		 form.setAttribute("method", "post");
 		 form.setAttribute("action", url);
-	     var boardNOInput = document.createElement("input");
-	     boardNOInput.setAttribute("type","hidden");
-	     boardNOInput.setAttribute("name","boardNO");
-	     boardNOInput.setAttribute("value", boardNO);
+	     var articleNOInput = document.createElement("input");
+	     articleNOInput.setAttribute("type","hidden");
+	     articleNOInput.setAttribute("name","articleNO");
+	     articleNOInput.setAttribute("value", articleNO);
 		 
-	     form.appendChild(boardNOInput);
+	     form.appendChild(articleNOInput);
 	     document.body.appendChild(form);
 	     form.submit();
 	 
@@ -87,15 +87,15 @@
  </script>
 </head>
 <body>
-  <form name="frmBoard" method="post"  action="${contextPath}"  enctype="multipart/form-data">
+  <form name="frmArticle" method="post"  action="${contextPath}"  enctype="multipart/form-data">
   <table  border=0  align="center">
   <tr>
    <td width=150 align="center" bgcolor=#FF9933>
       글번호
    </td>
    <td >
-    <input type="text"  value="${board.boardNO }"  disabled />
-    <input type="hidden" name="boardNO" value="${board.boardNO}"  />
+    <input type="text"  value="${article.articleNO }"  disabled />
+    <input type="hidden" name="articleNO" value="${article.articleNO}"  />
    </td>
   </tr>
   <tr>
@@ -103,7 +103,7 @@
       작성자 아이디
    </td>
    <td >
-    <input type=text value="${board.id }" name="writer"  disabled />
+    <input type=text value="${article.id }" name="writer"  disabled />
    </td>
   </tr>
   <tr>
@@ -111,7 +111,7 @@
       제목 
    </td>
    <td>
-    <input type=text value="${board.title }"  name="title"  id="i_title" disabled />
+    <input type=text value="${article.title }"  name="title"  id="i_title" disabled />
    </td>   
   </tr>
   <tr>
@@ -119,7 +119,7 @@
       내용
    </td>
    <td>
-    <textarea rows="20" cols="60"  name="content"  id="i_content"  disabled />${board.content }</textarea>
+    <textarea rows="20" cols="60"  name="content"  id="i_content"  disabled />${article.content }</textarea>
    </td>  
   </tr>
  <%-- 
@@ -131,7 +131,7 @@
 			   </td>
 			   <td>
 			     <input  type= "hidden"   name="originalFileName" value="${item.imageFileName }" />
-			    <img src="${contextPath}/download.pie?boardNO=${board.boardNO}&imageFileName=${item.imageFileName}" id="preview"  /><br>
+			    <img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${item.imageFileName}" id="preview"  /><br>
 			   </td>   
 			  </tr>  
 			  <tr>
@@ -144,14 +144,14 @@
  	 --%>    
  	 
   <c:choose> 
-	  <c:when test="${not empty board.imageFileName && board.imageFileName!='null' }">
+	  <c:when test="${not empty article.imageFileName && article.imageFileName!='null' }">
 	   	<tr>
 		    <td width="150" align="center" bgcolor="#FF9933"  rowspan="2">
 		      이미지
 		   </td>
 		   <td>
-		     <input  type= "hidden"   name="originalFileName" value="${board.imageFileName }" />
-		    <img src="${contextPath}/download.pie?boardeNO=${board.boardNO}&imageFileName=${board.imageFileName}" id="preview"  /><br>
+		     <input  type= "hidden"   name="originalFileName" value="${article.imageFileName }" />
+		    <img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${article.imageFileName}" id="preview"  /><br>
 		   </td>   
 		  </tr>  
 		  <tr>
@@ -167,7 +167,7 @@
 				      이미지
 				    </td>
 				    <td>
-				      <input  type= "hidden"   name="originalFileName" value="${board.imageFileName }" />
+				      <input  type= "hidden"   name="originalFileName" value="${article.imageFileName }" />
 				    </td>
 			    </tr>
 			    <tr>
@@ -184,24 +184,24 @@
 	      등록일자
 	   </td>
 	   <td>
-	    <input type=text value="<fmt:formatDate value="${board.writeDate}" />" disabled />
+	    <input type=text value="<fmt:formatDate value="${article.writeDate}" />" disabled />
 	   </td>   
   </tr>
   <tr   id="tr_btn_modify"  align="center"  >
 	   <td colspan="2"   >
-	       <input type=button value="수정반영하기"   onClick="fn_modify_board(frmBoard)"  >
-           <input type=button value="취소"  onClick="backToList(frmBoard)">
+	       <input type=button value="수정반영하기"   onClick="fn_modify_article(frmArticle)"  >
+           <input type=button value="취소"  onClick="backToList(frmArticle)">
 	   </td>   
   </tr>
     
   <tr  id="tr_btn"    >
    <td colspan="2" align="center">
-       <c:if test="${member.id == board.id }">
+       <c:if test="${member.id == article.id }">
 	      <input type=button value="수정하기" onClick="fn_enable(this.form)">
-	      <input type=button value="삭제하기" onClick="fn_remove_board('${contextPath}/board/removeBoard.pie', ${board.boardNO})">
+	      <input type=button value="삭제하기" onClick="fn_remove_article('${contextPath}/board/removeArticle.do', ${article.articleNO})">
 	    </c:if>
 	    <input type=button value="리스트로 돌아가기"  onClick="backToList(this.form)">
-	     <input type=button value="답글쓰기"  onClick="fn_reply_form('${contextPath}/board/replyForm.pie', ${board.boardNO})">
+	     <input type=button value="답글쓰기"  onClick="fn_reply_form('${contextPath}/board/replyForm.do', ${article.articleNO})">
    </td>
   </tr>
  </table>

@@ -23,18 +23,6 @@
 	</repositories>
 
 	<dependencies>
-	
-	
-	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-<dependency>
-    <groupId>commons-io</groupId>
-    <artifactId>commons-io</artifactId>
-    <version>2.4</version>
-</dependency>
-	
-	
-	
-	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -48,14 +36,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
-		<!-- 마이바티스 -->
-		<dependency>
-   			 <groupId>commons-beanutils</groupId>
-   			 <artifactId>commons-beanutils</artifactId>
-   			 <version>1.8.0</version>
-		</dependency>
-		
+
 		<!-- 기본 요소들 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -139,15 +120,6 @@
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity-tools</artifactId>
 			<version>2.0</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
-		<!--타일즈 관련 라이브러리
-		타일즈는 웹 페이지의 상단이나 하단 메뉴와 같이 반복적으로 사용되는 부분들에 대한 코드를 분리해서 예쁘게 한 곳에서 관리를 가능하게 해주는 프레임워크이다.-->
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-core</artifactId>
-			<version>2.2.2</version>
 		</dependency>
 
 		<!-- for Velocity 없으면 Velocity factory bean 생성 안됨 -->
@@ -342,7 +314,18 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
+		<!-- websocket -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>4.2.5.RELEASE</version>
+		</dependency>
+		<dependency>
+	    	<groupId>javax.websocket</groupId>
+	    	<artifactId>javax.websocket-api</artifactId>
+	    	<version>1.1</version>
+	    	<scope>provided</scope>
+		</dependency>
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

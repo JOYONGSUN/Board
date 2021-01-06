@@ -41,10 +41,13 @@
 			</div>
 		</div>
 		<!-- main body -->
-		<div class="project-main-body-wrapper">
-			<jsp:include page="/WEB-INF/views/kanban/kanban-board.jsp"></jsp:include>		
-
+		<div class="project-main-body-wrapper" id="calendarMain" style="display: none">
+			<jsp:include page="/WEB-INF/views/fullcalendar.jsp"></jsp:include>		
 		</div>
+		<div class="project-main-body-wrapper" id="kanban" style="display: block">
+			<jsp:include page="/WEB-INF/views/kanban/kanban-board.jsp"></jsp:include>		
+		</div>
+		
 	</div>
 		
 </body>

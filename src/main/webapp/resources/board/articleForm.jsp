@@ -16,13 +16,14 @@
    function readURL(input) {
       if (input.files && input.files[0]) {
 	      var reader = new FileReader();
+	      reader.onload = function (e) {
 	        $('#preview').attr('src', e.target.result);
           }
          reader.readAsDataURL(input.files[0]);
       }
   }  
   function backToList(obj){
-    obj.action="${contextPath}/board/listBoardes.pie";
+    obj.action="${contextPath}/board/listArticles.do";
     obj.submit();
   }
   
@@ -37,7 +38,7 @@
 </head>
 <body>
 <h1 style="text-align:center">글쓰기</h1>
-  <form name="boardForm" method="post"   action="${contextPath}/board/addNewBoard.pie"   enctype="multipart/form-data">
+  <form name="articleForm" method="post"   action="${contextPath}/board/addNewArticle.do"   enctype="multipart/form-data">
     <table border="0" align="center">
       <tr>
 					<td align="right"> 작성자</td>

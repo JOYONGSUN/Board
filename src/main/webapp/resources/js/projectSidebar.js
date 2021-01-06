@@ -4,15 +4,18 @@ $(document).ready(function(){
 	let tmpBtnClassName = 'fas fa-star';
 	let wrapper = document.getElementById('right-sidebar-contents-wrapper');	
 	
-	/*kanban & calendar 아이콘 클릭 시 다른 창 display: none */
-	$('#sidebar-kanban').click(function(){
+		$('#sidebar-kanban').click(function(){
 		wrapper.className = 'right-sidebar-contents-wrapper-hidden';
-		document.getElementById(tmpBtnClassName).style.display = 'none';
+		document.getElementById('calendarMain').style.display = 'none';
+		document.getElementById('kanban').style.display = 'block';
+		
 	});
 	$('#sidebar-calendar').click(function(){
 		wrapper.className = 'right-sidebar-contents-wrapper-hidden';
-		document.getElementById(tmpBtnClassName).style.display = 'none';
+		document.getElementById('kanban').style.display = 'none';
+		document.getElementById('calendarMain').style.display = 'block';
 	});
+	/*kanban & calendar 아이콘 클릭 시 다른 창 display: none */
 	
 	/*아이콘 클릭 시 해당 창으로 이동*/
 	$('#sidebar-star').click(function(){
@@ -80,6 +83,18 @@ $(document).ready(function(){
 		}
 	};
 });
-
+/*window.onload(function(){
+	$('#sidebar-kanban').click(function(){
+		wrapper.className = 'right-sidebar-contents-wrapper-hidden';
+		document.getElementById('calendarMain').style.display = 'none';
+		document.getElementById('kanban').style.display = 'block';
+		
+	});
+	$('#sidebar-calendar').click(function(){
+		wrapper.className = 'right-sidebar-contents-wrapper-hidden';
+		document.getElementById('kanban').style.display = 'none';
+		document.getElementById('calendarMain').style.display = 'block';
+	});
+})*/
 
 /*//right sidebar contents wrapper*/

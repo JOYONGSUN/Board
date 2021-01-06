@@ -42,7 +42,7 @@
 	transition: width .5s;
 }
 
-.sidebar > a{
+.sidebar > i{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -53,7 +53,7 @@
 	padding: 0 15px;
 }
 
-.sidebar > a:hover{
+.sidebar > i:hover{
 	background-color: #31353d;
 	color: #f2dd68;
 	cursor: pointer;
